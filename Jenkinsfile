@@ -43,7 +43,13 @@ pipeline {
            steps {
 	           script {
 		        withSonarQubeEnv(credentialsId: 'SonarQube') { 
-                        sh "mvn sonar:sonar"
+                        sh """
+                            mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar \
+                            -Dsonar.organization=${aravind0560} \
+                            -Dsonar.projectKey=${aravind0560_register-app} \
+                            -Dsonar.host.url=https://sonarcloud.io
+                        """
+				
 		        }
 	           }	
            }
